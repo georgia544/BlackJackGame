@@ -18,4 +18,3 @@ interface BlackJackGame {
     fun getStats(): List<Int> // показывает статистику игр
 }
 
-data class Card(val name: String, val value: Int)
