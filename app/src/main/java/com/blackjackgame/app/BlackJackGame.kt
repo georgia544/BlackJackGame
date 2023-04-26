@@ -30,7 +30,7 @@ class BlackJackGameMac: BlackJackGame{
     }
 
     override fun getAdditionalCard(): Card {
-        return Card(,2,2)
+        return Card(CardRank.KING,CardSuit.DIAMONDS,4)
     }
 
     override fun stopGettingCards() {
