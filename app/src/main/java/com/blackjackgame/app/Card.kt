@@ -3,7 +3,7 @@ package com.blackjackgame.app
 data class Card(val name: CardRank, val suit: CardSuit, val value: Int)
 
 val cards = listOf(
-    Card(CardRank.ACE, CardSuit.CLUBS, 11), //0-8
+    Card(CardRank.ACE, CardSuit.CLUBS, 11),
     Card(CardRank.ACE, CardSuit.DIAMONDS, 11),
     Card(CardRank.ACE, CardSuit.HEARTS, 11),
     Card(CardRank.ACE, CardSuit.SPADES, 11),
@@ -49,12 +49,23 @@ val cards = listOf(
     Card(CardRank.SIX, CardSuit.SPADES, 6)
 )
 
+val remainingCards = ArrayList(cards)
+val cardsInPlay = ArrayList<Card>()
+
+//[2,3]
+// [4] 1
+//3  2
 fun getRandomCardRank(): Card {
-    val random = (0..8).random()
-    return cards[random]
+    val random = (0 until remainingCards.size).random()
+    val randomCard = remainingCards[random]
+    cardsInPlay.add(randomCard)
+    remainingCards.remove(randomCard)
+    return randomCard
+
 }
 
-enum class CardRank() {
+
+enum class CardRank {
     ACE,
     KING,
     QUEEN,

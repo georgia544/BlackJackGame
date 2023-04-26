@@ -13,7 +13,7 @@ interface BlackJackGame {
     fun getOpponentCards(): List<Card> // показывает карты соперника
     fun getOpponentCardsValue(): Int // показывает сумму карт соперника
 
-    fun checkIfWin(): Boolean // проверяем кто выиграл
+    fun checkIfWin(): GameResult // проверяем кто выиграл
 
     fun getStats(): List<Int> // показывает статистику игр
 }
