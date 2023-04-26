@@ -28,26 +28,26 @@ class MainActivity : AppCompatActivity() {
 
         val textStatistics: TextView = findViewById(R.id.text_statistics)
 
-        val BlackJack = BlackJackGameMac()
+        val blackJack = BlackJackGameMock()
 
         startButton.setOnClickListener{
-            textWin.text = " "
-            textCardBot.text = " "
-            textCardPlayer.text = " "
-            textSumCardBot.text = " "
-            texSumCardPlayer.text = " "
-            textCardBot.text = BlackJack.getStartingCards().toString()
-            textCardPlayer.text = BlackJack.getStartingCards().toString()
+            textWin.text = ""
+            textCardBot.text = ""
+            textCardPlayer.text = ""
+            textSumCardBot.text = ""
+            texSumCardPlayer.text = ""
+            textCardPlayer.text = blackJack.getStartingCards().toString()
         }
 
         checkButton.setOnClickListener{
-            textSumCardBot.text = BlackJack.getCardsValue().toString()
-            texSumCardPlayer.text = BlackJack.getCardsValue().toString()
-            textWin.text = BlackJack.checkIfWin().toString()
-            textStatistics.text = textWin.toString()
+            textCardBot.text = blackJack.getOpponentCards().toString()
+            textSumCardBot.text = blackJack.getOpponentCardsValue().toString()
+            texSumCardPlayer.text = blackJack.getCardsValue().toString()
+            textWin.text = blackJack.checkIfWin().toString()
+            textStatistics.text = textStatistics.text.toString() + " " + textWin.toString()
         }
         takeCardButton.setOnClickListener{
-           textCardBot.text = BlackJack.getAdditionalCard().toString()
+           textCardPlayer.text = textCardPlayer.text.toString() + " " + blackJack.getAdditionalCard().toString()
         }
 
     }
