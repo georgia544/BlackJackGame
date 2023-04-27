@@ -1,5 +1,7 @@
 package com.blackjackgame.app
 
+import com.blackjackgame.app.CardRank.ACE
+
 class BlackJackGameImpl : BlackJackGame {
 
     private var gamerCards = arrayListOf<Card>()
@@ -31,12 +33,38 @@ class BlackJackGameImpl : BlackJackGame {
 
     override fun getCardsValue(): Int {
         var sum = 0
-        gamerCards.forEach {
-            sum += it.value
+        val aceList = gamerCards.filter { it.name == ACE }
+        val listWithoutAce = gamerCards.filter { it.name != ACE }
+        listWithoutAce.forEach {
+                sum += it.value
+            }
+        aceList.forEach{
+            if (sum<11){
+                sum += it.value
+            }else{
+                sum +=1
+            }
         }
+
         return sum
     }
 
+    override fun getOpponentCardsValue(): Int {
+        var sum = 0
+        val aceList = dealerCards.filter { it.name == ACE }
+        val listWithoutAce = dealerCards.filter { it.name != ACE }
+        listWithoutAce.forEach {
+            sum += it.value
+        }
+        aceList.forEach{
+            if (sum<11){
+                sum += it.value
+            }else{
+                sum +=1
+            }
+        }
+        return sum
+    }
 
     override fun getOpponentCards(): List<Card> {
         dealerCards = arrayListOf(getRandomCardRank(), getRandomCardRank())
@@ -49,13 +77,7 @@ class BlackJackGameImpl : BlackJackGame {
         return dealerCards
     }
 
-    override fun getOpponentCardsValue(): Int {
-        var sum = 0
-        dealerCards.forEach {
-            sum += it.value
-        }
-        return sum
-    }
+
 
     override fun checkIfWin(): GameResult {
         val dealerCardsSum = getOpponentCardsValue()
