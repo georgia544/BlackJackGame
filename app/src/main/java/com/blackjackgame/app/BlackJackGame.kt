@@ -20,7 +20,7 @@ interface BlackJackGame {
     fun getStats(): List<Int> // показывает статистику игр
 }
 
-class BlackJackGameMac: BlackJackGame{
+class BlackJackGameMock: BlackJackGame{
     override fun startGame() {
 
     }
@@ -30,7 +30,7 @@ class BlackJackGameMac: BlackJackGame{
     }
 
     override fun getAdditionalCard(): Card {
-        return Card(,2,2)
+        return Card(CardRank.KING,CardSuit.DIAMONDS,4)
     }
 
     override fun stopGettingCards() {
@@ -49,8 +49,8 @@ class BlackJackGameMac: BlackJackGame{
         return 19
     }
 
-    override fun checkIfWin(): Boolean {
-        return true
+    override fun checkIfWin(): GameResult  {
+        return GameResult.LOSE
     }
 
     override fun getStats(): List<Int> {
