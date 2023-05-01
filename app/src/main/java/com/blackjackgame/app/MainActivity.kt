@@ -37,17 +37,18 @@ class MainActivity : AppCompatActivity() {
             textSumCardBot.text = ""
             texSumCardPlayer.text = ""
             textCardPlayer.text = blackJack.getStartingCards().toString()
+            texSumCardPlayer.text = blackJack.getCardsValue().toString()
         }
 
         checkButton.setOnClickListener{
             textCardBot.text = blackJack.getOpponentCards().toString()
             textSumCardBot.text = blackJack.getOpponentCardsValue().toString()
-            texSumCardPlayer.text = blackJack.getCardsValue().toString()
             textWin.text = blackJack.checkIfWin().toString()
-            textStatistics.text = textStatistics.text.toString() + " " + textWin.toString()
+            textStatistics.text = blackJack.getStats().toString()
         }
         takeCardButton.setOnClickListener{
            textCardPlayer.text = textCardPlayer.text.toString() + " " + blackJack.getAdditionalCard().toString()
+           texSumCardPlayer.text = blackJack.getCardsValue().toString()
         }
 
     }
