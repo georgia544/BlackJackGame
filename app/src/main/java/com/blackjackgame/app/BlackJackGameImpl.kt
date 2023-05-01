@@ -7,7 +7,17 @@ class BlackJackGameImpl : BlackJackGame {
     private var gamerCards = arrayListOf<Card>()
     private var dealerCards = arrayListOf<Card>()
 
+   private val remainingCards = ArrayList(cards)
+  private  val cardsInPlay = ArrayList<Card>()
 
+   private fun getRandomCardRank(): Card {
+        val random = (0 until remainingCards.size).random()
+        val randomCard = remainingCards[random]
+        cardsInPlay.add(randomCard)
+        remainingCards.remove(randomCard)
+        return randomCard
+
+    }
     override fun startGame() {
         gamerCards.clear()
         dealerCards.clear()
@@ -70,6 +80,7 @@ class BlackJackGameImpl : BlackJackGame {
         dealerCards = arrayListOf(getRandomCardRank(), getRandomCardRank())
         val dealerCardsSum = getOpponentCardsValue()
 
+        //TODO добавить цикл
         if (dealerCardsSum < 18) {
             val newDealerCard = getAdditionalCard()
             dealerCards.add(newDealerCard)

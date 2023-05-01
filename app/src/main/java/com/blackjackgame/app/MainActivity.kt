@@ -28,13 +28,18 @@ class MainActivity : AppCompatActivity() {
 
         val textStatistics: TextView = findViewById(R.id.text_statistics)
 
-        val blackJack = BlackJackGameMock()
+        val blackJack:BlackJackGame = BlackJackGameImpl()
 
-        startButton.setOnClickListener{
+        //объединить кнопки старт и чек
+        //сделать кнгопку take a cart карт только когщда она имеет смысл
+
+     //   startButton.isEnabled
+
+        startButton.setOnClickListener{//надо показывать сумму карт
             textWin.text = ""
             textCardBot.text = ""
             textCardPlayer.text = ""
-            textSumCardBot.text = ""
+            textSumCardBot.text = ""  // поменять местами сумму бота и игрока
             texSumCardPlayer.text = ""
             textCardPlayer.text = blackJack.getStartingCards().toString()
         }
