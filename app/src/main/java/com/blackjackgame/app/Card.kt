@@ -49,20 +49,7 @@ val cards = listOf(
     Card(CardRank.SIX, CardSuit.SPADES, 6)
 )
 
-val remainingCards = ArrayList(cards)
-val cardsInPlay = ArrayList<Card>()
 
-//[2,3]
-// [4] 1
-//3  2
-fun getRandomCardRank(): Card {
-    val random = (0 until remainingCards.size).random()
-    val randomCard = remainingCards[random]
-    cardsInPlay.add(randomCard)
-    remainingCards.remove(randomCard)
-    return randomCard
-
-}
 
 
 enum class CardRank {
