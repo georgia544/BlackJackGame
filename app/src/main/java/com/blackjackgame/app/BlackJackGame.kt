@@ -17,7 +17,7 @@ interface BlackJackGame {
 
     fun checkIfWin(): GameResult // проверяем кто выиграл
 
-    fun getStats(): List<Int> // показывает статистику игр
+    fun getStats(): Statistics // показывает статистику игр
 }
 
 class BlackJackGameMock: BlackJackGame{
@@ -53,7 +53,7 @@ class BlackJackGameMock: BlackJackGame{
         return GameResult.LOSE
     }
 
-    override fun getStats(): List<Int> {
-        return ArrayList()
+    override fun getStats(): Statistics {
+        return Statistics(1,1,5)
     }
 }

@@ -11,6 +11,7 @@ class BlackJackGameImpl : BlackJackGame {
   private  val cardsInPlay = ArrayList<Card>()
 
    private fun getRandomCardRank(): Card {
+       println(remainingCards)
         val random = (0 until remainingCards.size).random()
         val randomCard = remainingCards[random]
         cardsInPlay.add(randomCard)
@@ -78,30 +79,46 @@ class BlackJackGameImpl : BlackJackGame {
 
     override fun getOpponentCards(): List<Card> {
         dealerCards = arrayListOf(getRandomCardRank(), getRandomCardRank())
-        val dealerCardsSum = getOpponentCardsValue()
+        var dealerCardsSum = getOpponentCardsValue()
 
-        //TODO добавить цикл
-        if (dealerCardsSum < 18) {
+
+        while (dealerCardsSum < 18) {
             val newDealerCard = getAdditionalCard()
             dealerCards.add(newDealerCard)
+            dealerCardsSum = getOpponentCardsValue()
         }
         return dealerCards
     }
 
 
+    private var statistics = Statistics(0,0,0)
 
     override fun checkIfWin(): GameResult {
+
         val dealerCardsSum = getOpponentCardsValue()
         val gamerCardsSum = getCardsValue()
-        if ((dealerCardsSum < gamerCardsSum) && gamerCardsSum <= 21) return GameResult.WIN
-        if (dealerCardsSum > 21 && gamerCardsSum <= 21) return GameResult.WIN
-        if (dealerCardsSum == gamerCardsSum) return GameResult.DRAW
-        if (dealerCardsSum > 21 && gamerCardsSum > 21) return GameResult.DRAW
+        if ((dealerCardsSum < gamerCardsSum) && gamerCardsSum <= 21) {
+          statistics= statistics.copy(win=statistics.win+1)
+            return GameResult.WIN
+        }
+        if (dealerCardsSum > 21 && gamerCardsSum <= 21){
+            statistics= statistics.copy(win=statistics.win+1)
+            return GameResult.WIN
+        }
+        if (dealerCardsSum == gamerCardsSum) {
+            statistics= statistics.copy(draw=statistics.draw+1)
+            return GameResult.DRAW
+        }
+        if (dealerCardsSum > 21 && gamerCardsSum > 21){
+            statistics= statistics.copy(draw=statistics.draw+1)
+            return GameResult.DRAW
+        }
+        statistics= statistics.copy(lose=statistics.lose+1)
         return GameResult.LOSE
     }
 
-    override fun getStats(): List<Int> {
-        TODO("Not yet implemented")
+    override fun getStats(): Statistics {
+        return statistics
     }
 
 
