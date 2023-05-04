@@ -15,16 +15,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/text_cards_bot"/>
-    <TextView
-        android:id="@+id/text_cards_bot"
+        app:layout_constraintBottom_toTopOf="@+id/cards_bot_conteiner"/>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/cards_bot_conteiner"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/black"
-        android:text=""
         android:gravity="center"
-        android:textSize="15sp"
-        android:fontFamily="@font/lora_variablefont_wght"
+        android:orientation="horizontal"
         app:layout_constraintTop_toBottomOf="@+id/button_start"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -37,7 +35,7 @@
         android:textColor="@color/black"
         android:text=""
         android:textSize="15sp"
-        app:layout_constraintTop_toBottomOf="@+id/text_cards_bot"
+        app:layout_constraintTop_toBottomOf="@+id/cards_bot_conteiner"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toTopOf="@+id/button_check"/>

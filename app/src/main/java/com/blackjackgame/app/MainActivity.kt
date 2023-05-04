@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -12,7 +14,7 @@ class MainActivity : AppCompatActivity() {
 
         val startButton: Button = findViewById(R.id.button_start)
 
-        val textCardBot: TextView = findViewById(R.id.text_cards_bot)
+        val cardsBotConteiner: RecyclerView = findViewById(R.id.cards_bot_conteiner)
 
         val textSumCardBot: TextView = findViewById(R.id.text_sum_cards_bot)
 
@@ -30,23 +32,38 @@ class MainActivity : AppCompatActivity() {
 
         val blackJack:BlackJackGame = BlackJackGameImpl()
 
+        val cardItem = arrayListOf<CardItem>()
+
+        val cardsBot = CardAdapter(cardItem)
+
+        cardsBotConteiner.adapter = cardsBot
+
+        val linearLayoutManagerBot = LinearLayoutManager(this)
+
+        linearLayoutManagerBot.orientation = LinearLayoutManager.HORIZONTAL
+
+        cardsBotConteiner.layoutManager = linearLayoutManagerBot
+
+
+
         //объединить кнопки старт и чек
         //сделать кнгопку take a cart карт только когщда она имеет смысл
 
      //   startButton.isEnabled
 
-        startButton.setOnClickListener{//надо показывать сумму карт
+        startButton.setOnClickListener{//надо показывать сумму карт +
             textWin.text = ""
-            textCardBot.text = ""
+
             textCardPlayer.text = ""
-            textSumCardBot.text = ""  // поменять местами сумму бота и игрока
+            textSumCardBot.text = ""  // поменять местами сумму бота и игрока +
             texSumCardPlayer.text = ""
             textCardPlayer.text = blackJack.getStartingCards().toString()
             texSumCardPlayer.text = blackJack.getCardsValue().toString()
         }
 
         checkButton.setOnClickListener{
-            textCardBot.text = blackJack.getOpponentCards().toString()
+            val botCard: CardItem = CardItem()
+            cardsBot.addItem()
             textSumCardBot.text = blackJack.getOpponentCardsValue().toString()
             textWin.text = blackJack.checkIfWin().toString()
             textStatistics.text = blackJack.getStats().toString()
