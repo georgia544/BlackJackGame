@@ -47,5 +47,5 @@ fun Card.convert(): Int{
         Card(CardRank.SIX,CardSuit.HEARTS,6) -> return R.drawable.card_hearts_6
         Card(CardRank.SIX,CardSuit.SPADES,6) -> return R.drawable.card_spades_6
     }
-    return convert()
+    return -1
 }

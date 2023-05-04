@@ -34,9 +34,9 @@ class MainActivity : AppCompatActivity() {
 
         val cardItem = arrayListOf<CardItem>()
 
-        val cardsBot = CardAdapter(cardItem)
+        val cardsBotAdapter = CardAdapter(cardItem)
 
-        cardsBotConteiner.adapter = cardsBot
+        cardsBotConteiner.adapter = cardsBotAdapter
 
         val linearLayoutManagerBot = LinearLayoutManager(this)
 
@@ -53,6 +53,7 @@ class MainActivity : AppCompatActivity() {
 
         startButton.setOnClickListener{//надо показывать сумму карт +
             textWin.text = ""
+            blackJack.startGame()
 
             textCardPlayer.text = ""
             textSumCardBot.text = ""  // поменять местами сумму бота и игрока +
@@ -62,8 +63,11 @@ class MainActivity : AppCompatActivity() {
         }
 
         checkButton.setOnClickListener{
-            val botCard: CardItem = CardItem()
-            cardsBot.addItem()
+            blackJack.getOpponentCards().forEach{
+
+               cardsBotAdapter.addItem(CardItem(it.convert()))
+           }
+
             textSumCardBot.text = blackJack.getOpponentCardsValue().toString()
             textWin.text = blackJack.checkIfWin().toString()
             textStatistics.text = blackJack.getStats().toString()
