@@ -2,7 +2,8 @@ package com.blackjackgame.app
 
 interface DurakGame {
     fun startGame() //начало игры
-    fun getStartingCards():List<Card> //получаем по 6 карт и по ебалу
+    fun getStartingCardsBot():List<Card> //получаем по 6 карт бота ебаного
+    fun getStartingCardsPlayer():List<Card> // 6 карт игроку ссаному
     fun getTrump():Card //определяем козырную карту
     fun firstTurn():Boolean //кто первый ходит
     fun turn(cards:List<Card>):TurnResult //ход-бито, подкинул/походил
