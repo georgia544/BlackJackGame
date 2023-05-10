@@ -1,14 +1,10 @@
 package com.blackjackgame.app
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
-import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.commit
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
@@ -18,7 +14,7 @@ class BlackJackFragment : Fragment(R.layout.fragment_black_jack){
 
         val startButton: Button = view.findViewById(R.id.button_start)
 
-        val cardsBotConteiner: RecyclerView = view.findViewById(R.id.cards_bot_conteiner)
+        val cardsBotConteiner: RecyclerView = view.findViewById(R.id.cards_bot_container)
 
         val textSumCardBot: TextView = view.findViewById(R.id.text_sum_cards_bot)
 
