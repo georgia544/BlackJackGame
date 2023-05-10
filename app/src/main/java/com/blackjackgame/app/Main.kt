@@ -1,21 +1,14 @@
 package com.blackjackgame.app
 
 fun main(){
-        val game = BlackJackGameImpl()
+        val game = DurakGamelmpl()
 
-        repeat(10) {
-
-                game.startGame()
-
-                println(game.getStartingCards())
-                println(game.getAdditionalCard())
-
-                println(game.getCardsValue())
-                println(game.getOpponentCards())
-                println(game.getOpponentCardsValue())
-
+        repeat(3) {
+                println(game.getCardsPlayer())
+                println(game.getCardsBot())
                 println(game.checkIfWin())
-                println(game.getStats())
-                Thread.sleep(3000L)
+                println(game.deckCounter())
+
         }
+
 }

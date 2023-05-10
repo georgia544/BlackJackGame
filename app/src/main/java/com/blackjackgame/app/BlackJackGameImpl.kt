@@ -125,6 +125,7 @@ class BlackJackGameImpl : BlackJackGame {
 }
 
 enum class GameResult {
+    IN_PROGRESS,
     WIN,
     LOSE,
     DRAW
