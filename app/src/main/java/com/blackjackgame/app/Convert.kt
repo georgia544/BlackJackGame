@@ -1,51 +1,56 @@
 package com.blackjackgame.app
 
-fun Card.convert(): Int{
-    when(this) {
-        Card(CardRank.ACE, CardSuit.CLUBS, 11) -> return R.drawable.card_clubs_1
-        Card(CardRank.ACE, CardSuit.DIAMONDS, 11) -> return R.drawable.card_diamonds_1
-        Card(CardRank.ACE, CardSuit.HEARTS, 11) -> return R.drawable.card_hearts_1
-        Card(CardRank.ACE, CardSuit.SPADES, 11) -> return R.drawable.card_spades_1
+fun Card.convert(): Int {
+    when (true) {
+        checkIfEquals(CardRank.ACE, CardSuit.CLUBS) -> return R.drawable.ace_of_clubs
+        checkIfEquals(CardRank.ACE, CardSuit.DIAMONDS) -> return R.drawable.ace_of_diamonds
+        checkIfEquals(CardRank.ACE, CardSuit.HEARTS) -> return R.drawable.ace_of_hearts
+        checkIfEquals(CardRank.ACE, CardSuit.SPADES) -> return R.drawable.ace_of_spades
 
-        Card(CardRank.KING, CardSuit.CLUBS, 4) -> return R.drawable.card_clubs_13
-        Card(CardRank.KING, CardSuit.DIAMONDS, 4) -> return R.drawable.card_diamonds_13
-        Card(CardRank.KING, CardSuit.HEARTS, 4) -> return R.drawable.card_hearts_13
-        Card(CardRank.KING, CardSuit.SPADES, 4) -> return R.drawable.card_spades_13
+        checkIfEquals(CardRank.KING, CardSuit.CLUBS) -> return R.drawable.king_of_clubs2
+        checkIfEquals(CardRank.KING, CardSuit.DIAMONDS) -> return R.drawable.king_of_diamonds2
+        checkIfEquals(CardRank.KING, CardSuit.HEARTS) -> return R.drawable.king_of_hearts2
+        checkIfEquals(CardRank.KING, CardSuit.SPADES) -> return R.drawable.king_of_spades2
 
-        Card(CardRank.QUEEN, CardSuit.CLUBS, 3) -> return R.drawable.card_clubs_12
-        Card(CardRank.QUEEN, CardSuit.DIAMONDS, 3) -> return R.drawable.card_diamonds_12
-        Card(CardRank.QUEEN, CardSuit.HEARTS, 3) -> return R.drawable.card_hearts_12
-        Card(CardRank.QUEEN, CardSuit.SPADES, 3) -> return R.drawable.card_spades_12
+        checkIfEquals(CardRank.QUEEN, CardSuit.CLUBS) -> return R.drawable.queen_of_clubs2
+        checkIfEquals(CardRank.QUEEN, CardSuit.DIAMONDS) -> return R.drawable.queen_of_diamonds2
+        checkIfEquals(CardRank.QUEEN, CardSuit.HEARTS) -> return R.drawable.queen_of_hearts2
+        checkIfEquals(CardRank.QUEEN, CardSuit.SPADES) -> return R.drawable.queen_of_spades2
 
-        Card(CardRank.JACK,CardSuit.CLUBS,2) -> return R.drawable.card_clubs_11
-        Card(CardRank.JACK,CardSuit.DIAMONDS,2) -> return R.drawable.card_diamonds_11
-        Card(CardRank.JACK,CardSuit.HEARTS,2) -> return R.drawable.card_hearts_11
-        Card(CardRank.JACK,CardSuit.SPADES,2) -> return R.drawable.card_spades_11
+        checkIfEquals(CardRank.JACK, CardSuit.CLUBS) -> return R.drawable.jack_of_clubs2
+        checkIfEquals(CardRank.JACK, CardSuit.DIAMONDS) -> return R.drawable.jack_of_diamonds2
+        checkIfEquals(CardRank.JACK, CardSuit.HEARTS) -> return R.drawable.jack_of_hearts2
+        checkIfEquals(CardRank.JACK, CardSuit.SPADES) -> return R.drawable.jack_of_spades2
 
-        Card(CardRank.TEN,CardSuit.CLUBS,10) -> return R.drawable.card_clubs_10
-        Card(CardRank.TEN,CardSuit.DIAMONDS,10) -> return R.drawable.card_diamonds_10
-        Card(CardRank.TEN,CardSuit.HEARTS,10) -> return R.drawable.card_hearts_10
-        Card(CardRank.TEN,CardSuit.SPADES,10) -> return R.drawable.card_spades_10
+        checkIfEquals(CardRank.TEN, CardSuit.CLUBS) -> return R.drawable.clubs_10
+        checkIfEquals(CardRank.TEN, CardSuit.DIAMONDS) -> return R.drawable.diamonds_10
+        checkIfEquals(CardRank.TEN, CardSuit.HEARTS) -> return R.drawable.hearts_10
+        checkIfEquals(CardRank.TEN, CardSuit.SPADES) -> return R.drawable.spades_10
 
-        Card(CardRank.NINE,CardSuit.CLUBS,9) -> return R.drawable.card_clubs_9
-        Card(CardRank.NINE,CardSuit.DIAMONDS,9) -> return R.drawable.card_diamonds_9
-        Card(CardRank.NINE,CardSuit.HEARTS,9) -> return R.drawable.card_hearts_9
-        Card(CardRank.NINE,CardSuit.SPADES,9) -> return R.drawable.card_spades_9
+        checkIfEquals(CardRank.NINE, CardSuit.CLUBS) -> return R.drawable.clubs_9
+        checkIfEquals(CardRank.NINE, CardSuit.DIAMONDS) -> return R.drawable.diamonds_9
+        checkIfEquals(CardRank.NINE, CardSuit.HEARTS) -> return R.drawable.hearts_9
+        checkIfEquals(CardRank.NINE, CardSuit.SPADES) -> return R.drawable.spades_9
 
-        Card(CardRank.EIGHT,CardSuit.CLUBS,8) -> return R.drawable.card_clubs_8
-        Card(CardRank.EIGHT,CardSuit.DIAMONDS,8) -> return R.drawable.card_diamonds_8
-        Card(CardRank.EIGHT,CardSuit.HEARTS,8) -> return R.drawable.card_hearts_8
-        Card(CardRank.EIGHT,CardSuit.SPADES,8) -> return R.drawable.card_spades_8
+        checkIfEquals(CardRank.EIGHT, CardSuit.CLUBS) -> return R.drawable.clubs_8
+        checkIfEquals(CardRank.EIGHT, CardSuit.DIAMONDS) -> return R.drawable.diamonds_8
+        checkIfEquals(CardRank.EIGHT, CardSuit.HEARTS) -> return R.drawable.hearts_8
+        checkIfEquals(CardRank.EIGHT, CardSuit.SPADES) -> return R.drawable.spades_8
 
-        Card(CardRank.SEVEN,CardSuit.CLUBS,7) -> return R.drawable.card_clubs_7
-        Card(CardRank.SEVEN,CardSuit.DIAMONDS,7) -> return R.drawable.card_diamonds_7
-        Card(CardRank.SEVEN,CardSuit.HEARTS,7) -> return R.drawable.card_hearts_7
-        Card(CardRank.SEVEN,CardSuit.SPADES,7) -> return R.drawable.card_spades_7
+        checkIfEquals(CardRank.SEVEN, CardSuit.CLUBS) -> return R.drawable.clubs_7
+        checkIfEquals(CardRank.SEVEN, CardSuit.DIAMONDS) -> return R.drawable.diamonds_7
+        checkIfEquals(CardRank.SEVEN, CardSuit.HEARTS) -> return R.drawable.hearts_7
+        checkIfEquals(CardRank.SEVEN, CardSuit.SPADES) -> return R.drawable.spades_7
 
-        Card(CardRank.SIX,CardSuit.CLUBS,6) -> return R.drawable.card_clubs_6
-        Card(CardRank.SIX,CardSuit.DIAMONDS,6) -> return R.drawable.card_diamonds_6
-        Card(CardRank.SIX,CardSuit.HEARTS,6) -> return R.drawable.card_hearts_6
-        Card(CardRank.SIX,CardSuit.SPADES,6) -> return R.drawable.card_spades_6
+        checkIfEquals(CardRank.SIX, CardSuit.CLUBS) -> return R.drawable.clubs_6
+        checkIfEquals(CardRank.SIX, CardSuit.DIAMONDS) -> return R.drawable.diamonds_6
+        checkIfEquals(CardRank.SIX, CardSuit.HEARTS) -> return R.drawable.hearts_6
+        checkIfEquals(CardRank.SIX, CardSuit.SPADES) -> return R.drawable.spades_6
+        true -> return -1
+        false -> return -1
     }
-    return -1
+}
+
+private fun Card.checkIfEquals(cardRank: CardRank, cardSuit: CardSuit): Boolean {
+    return this.name == cardRank && this.suit == cardSuit
 }
