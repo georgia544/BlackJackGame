@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 
-class CardAdapter(private val cardItems: ArrayList<CardItem>) :
+class CardAdapter(private var cardItems: ArrayList<CardItem>) :
     RecyclerView.Adapter<CardAdapter.CardViewHolder>() {
 
     fun addItem(cardItem: CardItem) {
@@ -14,9 +14,14 @@ class CardAdapter(private val cardItems: ArrayList<CardItem>) :
         notifyDataSetChanged()
     }
 
+    fun updateItems(list:ArrayList<CardItem>){
+        cardItems = list
+        notifyDataSetChanged()
+    }
 
-    class CardViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val image: ImageView = view.findViewById(R.id.draw_card)
+
+   class CardViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+        val image: ImageView = view.findViewById(R.id.draw_card_player)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CardViewHolder {

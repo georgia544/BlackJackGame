@@ -7,7 +7,7 @@
     android:background="@drawable/background_durak">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/player_cards_durak"
+        android:id="@+id/player_cards"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
@@ -22,6 +22,7 @@
         android:id="@+id/bot_cards"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:paddingBottom="20dp"
         android:background="@drawable/background_rectangle"
         android:orientation="horizontal"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
@@ -30,6 +31,43 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:listitem="@layout/card_item_bot" />
+
+    <ImageView
+        android:layout_marginTop="14dp"
+        android:id="@+id/trump"
+        android:layout_width="90dp"
+        android:layout_height="150dp"
+        tools:src="@drawable/ace_of_clubs"
+        app:layout_constraintTop_toBottomOf="@id/bot_cards"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+
+        />
+
+    <ImageView
+        android:id="@+id/card_shirt"
+        android:layout_width="130dp"
+        android:layout_height="90dp"
+        android:src="@drawable/card_shirt_rotated"
+        app:layout_constraintTop_toTopOf="@id/trump"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
+
+    <TextView
+        android:id="@+id/deck_counter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/rectangle_black"
+        tools:text="21"
+        android:padding="4dp"
+        android:textSize="24sp"
+        android:fontFamily="@font/roboto_regular"
+        android:textColor="@color/white"
+        app:layout_constraintTop_toTopOf="@id/card_shirt"
+        app:layout_constraintEnd_toEndOf="@id/card_shirt"
+
+        />
 
 
     <androidx.appcompat.widget.AppCompatButton
@@ -44,7 +82,7 @@
         android:textSize="14sp"
         android:layout_marginBottom="10dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/player_cards_durak"
+        app:layout_constraintBottom_toTopOf="@id/player_cards"
         />
 
     <ImageButton

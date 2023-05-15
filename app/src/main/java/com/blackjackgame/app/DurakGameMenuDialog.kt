@@ -6,7 +6,9 @@ import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import androidx.fragment.app.DialogFragment
+import androidx.fragment.app.commit
 
 class DurakGameMenuDialog : DialogFragment() {
     override fun onCreateView(
@@ -20,6 +22,24 @@ class DurakGameMenuDialog : DialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val durakGame:DurakGame=DurakGameMock()
+
+        val backButton:Button = view.findViewById(R.id.back_button)
+        backButton.setOnClickListener {
+            dismiss()
+        }
+
+        val endGameButton:Button = view.findViewById(R.id.end_game_button)
+        endGameButton.setOnClickListener {
+            dismiss()
+            parentFragmentManager.popBackStack()
+        }
+
+        val newGameButton:Button=view.findViewById(R.id.new_game_button)
+        newGameButton.setOnClickListener{
+            durakGame.startGame()
+        }
+
     }
 
     override fun onStart() {
@@ -30,6 +50,8 @@ class DurakGameMenuDialog : DialogFragment() {
         )
         dialog?.window?.setBackgroundDrawable(null)
     }
+
+
 
 }
 

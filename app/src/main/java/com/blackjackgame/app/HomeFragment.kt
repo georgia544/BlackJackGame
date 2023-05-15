@@ -15,7 +15,7 @@ class HomeFragment:Fragment (R.layout.fragment_home){
          view.findViewById<ImageButton>(R.id.button_black_jack)
              .setOnClickListener {
                  parentFragmentManager.commit {
-                     addToBackStack(null)
+                     addToBackStack("home")
                      replace<BlackJackFragment>(R.id.fragment_container_view)
                  }
              }
@@ -24,7 +24,7 @@ class HomeFragment:Fragment (R.layout.fragment_home){
         view.findViewById<ImageButton>(R.id.button_durak)
             .setOnClickListener {
                 parentFragmentManager.commit{
-                    addToBackStack(null)
+                    addToBackStack("home")
                     replace<DurakFragment>(R.id.fragment_container_view)
                 }
             }
