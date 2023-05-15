@@ -3,25 +3,30 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/background_durak">
 
-    <Button
+
+    <ImageButton
         android:id="@+id/button_black_jack"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Black Jack"
-        app:layout_constraintBottom_toTopOf="@+id/button_durak"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@null"
+        android:padding="80dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/black_jack_logo_game"
+        app:layout_constraintBottom_toTopOf="@id/button_durak"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
+    <ImageButton
         android:id="@+id/button_durak"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Durak"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@null"
+        android:padding="80dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/durak_logo"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/button_black_jack" />
+        app:layout_constraintTop_toBottomOf="@id/button_black_jack"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

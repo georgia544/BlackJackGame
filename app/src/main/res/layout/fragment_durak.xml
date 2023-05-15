@@ -18,6 +18,19 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/bot_cards"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/background_rectangle"
+        android:orientation="horizontal"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:listitem="@layout/card_item_bot" />
+
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/end_of_turn_button"
@@ -25,12 +38,26 @@
         android:layout_height="35dp"
         android:background="@drawable/background_rectangle_white"
         android:fontFamily="@font/roboto_regular"
-        android:paddingHorizontal="20dp"
         android:layout_marginEnd="20dp"
         android:text="Конец хода"
+        android:paddingHorizontal="8dp"
+        android:textSize="14sp"
         android:layout_marginBottom="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toTopOf="@id/player_cards_durak"
+        />
+
+    <ImageButton
+        android:id="@+id/menu_fragment"
+        android:layout_width="44dp"
+        android:layout_height="44dp"
+        android:background="@android:color/transparent"
+        android:scaleType="fitXY"
+        android:src="@drawable/menu_icon"
+        android:layout_marginEnd="20dp"
+        app:layout_constraintTop_toBottomOf="@id/bot_cards"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="10dp"
         />
 
 

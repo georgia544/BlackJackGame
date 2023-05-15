@@ -21,7 +21,11 @@ class DurakMock:DurakGame{
 
     }
 
-    override fun getStartingCards(): List<Card> {
+    override fun getStartingCardsBot(): List<Card> {
+        return ArrayList()
+    }
+
+    override fun getStartingCardsPlayer(): List<Card> {
         return ArrayList()
     }
 
