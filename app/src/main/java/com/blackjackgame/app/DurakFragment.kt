@@ -2,8 +2,12 @@ package com.blackjackgame.app
 
 import android.os.Bundle
 import android.view.View
+import android.widget.Button
 import android.widget.ImageButton
+import android.widget.ImageView
+import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import cdflynn.android.library.turn.TurnLayoutManager
 import cdflynn.android.library.turn.TurnLayoutManager.Orientation
@@ -34,6 +38,8 @@ class DurakFragment : Fragment(R.layout.fragment_durak) {
 //        )
 
 
+
+
         cardsPlayerAdapter.updateItems(
             ArrayList(
                 durakGame.getCardsPlayer().map {
@@ -44,8 +50,43 @@ class DurakFragment : Fragment(R.layout.fragment_durak) {
         val cardsBotContainer: RecyclerView = view.findViewById(R.id.bot_cards)
         val cardsBotAdapter = CardBotAdapter(0)
         cardsBotContainer.adapter = cardsBotAdapter
-
         cardsBotAdapter.updateAmount(durakGame.getCardsBot())
+
+
+
+        val cardsOnTableContainer:RecyclerView = view.findViewById(R.id.cards_on_table)
+        val cardsOnTableAdapter = CardsOnTableAdapter(arrayListOf())
+        cardsOnTableContainer.layoutManager = GridLayoutManager(context, 3)
+
+        cardsOnTableContainer.adapter = cardsOnTableAdapter
+
+
+        cardsOnTableAdapter.updateItems(
+            ArrayList(
+                durakGame.table().map {
+                    CardsOnTableItem(topImage = it.upperCard?.convert(),
+                        bottomImage = it.bottomCard?.convert())
+                }
+            )
+        )
+
+
+
+        val deckCounterTextView = view.findViewById<TextView>(R.id.deck_counter)
+        deckCounterTextView.text = durakGame.deckCounter().toString()
+
+        val trumpCardImageView = view.findViewById<ImageView>(R.id.trump)
+        trumpCardImageView.setImageResource(durakGame.getTrump().convert())
+
+        val endOfTurnButton = view.findViewById<Button>(R.id.end_of_turn_button)
+        endOfTurnButton.setOnClickListener {
+            if (durakGame.isMyTurn()){
+            durakGame.endTurn()
+
+            } else {
+                durakGame.takeCards()
+            }
+        }
 
     }
 }
