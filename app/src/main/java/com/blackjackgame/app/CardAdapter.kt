@@ -6,7 +6,8 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 
-class CardAdapter(private var cardItems: ArrayList<CardItem>) :
+class CardAdapter(private var cardItems: ArrayList<CardItem>,private val durakGame: DurakGame,
+) : //TODO private val onTurn:()->Unit
     RecyclerView.Adapter<CardAdapter.CardViewHolder>() {
 
     fun addItem(cardItem: CardItem) {
@@ -33,6 +34,11 @@ class CardAdapter(private var cardItems: ArrayList<CardItem>) :
 
     override fun onBindViewHolder(holder: CardViewHolder, position: Int) {
         holder.image.setImageResource(cardItems[position].images)
+        holder.image.setOnClickListener {
+           val chosenCard= durakGame.getCardsPlayer()[position]
+            durakGame.turn(listOf(chosenCard))
+            durakGame.requestBotTurn()
+        }
     }
 
     override fun getItemCount() = cardItems.size

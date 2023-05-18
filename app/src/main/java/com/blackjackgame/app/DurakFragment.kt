@@ -13,7 +13,11 @@ import cdflynn.android.library.turn.TurnLayoutManager
 import cdflynn.android.library.turn.TurnLayoutManager.Orientation
 
 class DurakFragment : Fragment(R.layout.fragment_durak) {
-
+  private  val durakGame: DurakGame = DurakGameMock()
+    private val cardsOnTableAdapter = CardsOnTableAdapter(arrayListOf())
+    private val cardsPlayerAdapter = CardAdapter(arrayListOf(),durakGame)
+   private val cardsBotAdapter = CardBotAdapter(0)
+    private lateinit var deckCounterTextView:TextView
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -22,11 +26,12 @@ class DurakFragment : Fragment(R.layout.fragment_durak) {
 
         }
 
-        val durakGame: DurakGame = DurakGameMock()
+
         durakGame.startGame()
 
+
         val cardsPlayerContainer: RecyclerView = view.findViewById(R.id.player_cards)
-        val cardsPlayerAdapter = CardAdapter(arrayListOf())
+
         cardsPlayerContainer.adapter = cardsPlayerAdapter
 //        cardsPlayerContainer.layoutManager = TurnLayoutManager(
 //            context,              // provide a context
@@ -37,9 +42,6 @@ class DurakFragment : Fragment(R.layout.fragment_durak) {
 //            true
 //        )
 
-
-
-
         cardsPlayerAdapter.updateItems(
             ArrayList(
                 durakGame.getCardsPlayer().map {
@@ -47,18 +49,23 @@ class DurakFragment : Fragment(R.layout.fragment_durak) {
                 })
         )
 
+
+
+
+
         val cardsBotContainer: RecyclerView = view.findViewById(R.id.bot_cards)
-        val cardsBotAdapter = CardBotAdapter(0)
+
         cardsBotContainer.adapter = cardsBotAdapter
         cardsBotAdapter.updateAmount(durakGame.getCardsBot())
 
 
 
         val cardsOnTableContainer:RecyclerView = view.findViewById(R.id.cards_on_table)
-        val cardsOnTableAdapter = CardsOnTableAdapter(arrayListOf())
-        cardsOnTableContainer.layoutManager = GridLayoutManager(context, 3)
 
+        cardsOnTableContainer.layoutManager = GridLayoutManager(context, 3)
         cardsOnTableContainer.adapter = cardsOnTableAdapter
+
+
 
 
         cardsOnTableAdapter.updateItems(
@@ -72,11 +79,12 @@ class DurakFragment : Fragment(R.layout.fragment_durak) {
 
 
 
-        val deckCounterTextView = view.findViewById<TextView>(R.id.deck_counter)
+        deckCounterTextView = view.findViewById<TextView>(R.id.deck_counter)
         deckCounterTextView.text = durakGame.deckCounter().toString()
 
         val trumpCardImageView = view.findViewById<ImageView>(R.id.trump)
         trumpCardImageView.setImageResource(durakGame.getTrump().convert())
+
 
         val endOfTurnButton = view.findViewById<Button>(R.id.end_of_turn_button)
         endOfTurnButton.setOnClickListener {
@@ -86,7 +94,32 @@ class DurakFragment : Fragment(R.layout.fragment_durak) {
             } else {
                 durakGame.takeCards()
             }
+            durakGame.requestBotTurn()
+            updateUI()
         }
 
+
+
+    }
+
+    fun updateUI(){
+        cardsOnTableAdapter.updateItems(
+            ArrayList(
+                durakGame.table().map {
+                    CardsOnTableItem(topImage = it.upperCard?.convert(),
+                        bottomImage = it.bottomCard?.convert())
+                }
+            )
+        )
+        cardsPlayerAdapter.updateItems(
+            ArrayList(
+                durakGame.getCardsPlayer().map {
+                    CardItem(it.convert())
+                })
+        )
+
+        cardsBotAdapter.updateAmount(durakGame.getCardsBot())
+
+        deckCounterTextView.text = durakGame.deckCounter().toString()
     }
 }
