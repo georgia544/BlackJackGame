@@ -6,7 +6,7 @@ class DurakGameMock:DurakGame {
     }
 
     override fun deckCounter(): Int {
-        return 21
+        return 1
     }
 
     override fun getCardsBot(): Int {

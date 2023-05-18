@@ -6,6 +6,7 @@ import android.widget.Button
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.view.isInvisible
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -13,11 +14,13 @@ import cdflynn.android.library.turn.TurnLayoutManager
 import cdflynn.android.library.turn.TurnLayoutManager.Orientation
 
 class DurakFragment : Fragment(R.layout.fragment_durak) {
-  private  val durakGame: DurakGame = DurakGameMock()
+    private val durakGame: DurakGame = DurakGameMock()
     private val cardsOnTableAdapter = CardsOnTableAdapter(arrayListOf())
-    private val cardsPlayerAdapter = CardAdapter(arrayListOf(),durakGame)
-   private val cardsBotAdapter = CardBotAdapter(0)
-    private lateinit var deckCounterTextView:TextView
+    private val cardsPlayerAdapter = CardAdapter(arrayListOf(), durakGame)
+    private val cardsBotAdapter = CardBotAdapter(0)
+    private lateinit var deckCounterTextView: TextView
+    private lateinit var cardShirtImageView: ImageView
+    private lateinit var trumpCardImageView: ImageView
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -50,17 +53,13 @@ class DurakFragment : Fragment(R.layout.fragment_durak) {
         )
 
 
-
-
-
         val cardsBotContainer: RecyclerView = view.findViewById(R.id.bot_cards)
 
         cardsBotContainer.adapter = cardsBotAdapter
         cardsBotAdapter.updateAmount(durakGame.getCardsBot())
 
 
-
-        val cardsOnTableContainer:RecyclerView = view.findViewById(R.id.cards_on_table)
+        val cardsOnTableContainer: RecyclerView = view.findViewById(R.id.cards_on_table)
 
         cardsOnTableContainer.layoutManager = GridLayoutManager(context, 3)
         cardsOnTableContainer.adapter = cardsOnTableAdapter
@@ -71,8 +70,10 @@ class DurakFragment : Fragment(R.layout.fragment_durak) {
         cardsOnTableAdapter.updateItems(
             ArrayList(
                 durakGame.table().map {
-                    CardsOnTableItem(topImage = it.upperCard?.convert(),
-                        bottomImage = it.bottomCard?.convert())
+                    CardsOnTableItem(
+                        topImage = it.upperCard?.convert(),
+                        bottomImage = it.bottomCard?.convert()
+                    )
                 }
             )
         )
@@ -82,14 +83,14 @@ class DurakFragment : Fragment(R.layout.fragment_durak) {
         deckCounterTextView = view.findViewById<TextView>(R.id.deck_counter)
         deckCounterTextView.text = durakGame.deckCounter().toString()
 
-        val trumpCardImageView = view.findViewById<ImageView>(R.id.trump)
+        trumpCardImageView = view.findViewById<ImageView>(R.id.trump)
         trumpCardImageView.setImageResource(durakGame.getTrump().convert())
 
 
         val endOfTurnButton = view.findViewById<Button>(R.id.end_of_turn_button)
         endOfTurnButton.setOnClickListener {
-            if (durakGame.isMyTurn()){
-            durakGame.endTurn()
+            if (durakGame.isMyTurn()) {
+                durakGame.endTurn()
 
             } else {
                 durakGame.takeCards()
@@ -98,16 +99,34 @@ class DurakFragment : Fragment(R.layout.fragment_durak) {
             updateUI()
         }
 
+        val deckCounterTextView = view.findViewById<TextView>(R.id.deck_counter)
+        cardShirtImageView = view.findViewById<ImageView>(R.id.card_shirt)
+
+        if(durakGame.deckCounter() == 1){
+            cardShirtImageView.visibility = View.INVISIBLE
+            deckCounterTextView.visibility = View.INVISIBLE
+            trumpCardImageView.visibility = View.VISIBLE
+
+        }else if (durakGame.deckCounter() == 0) {
+
+            cardShirtImageView.visibility = View.INVISIBLE
+            deckCounterTextView.visibility = View.INVISIBLE
+            trumpCardImageView.visibility = View.INVISIBLE
+        }
+
+
 
 
     }
 
-    fun updateUI(){
+    fun updateUI() {
         cardsOnTableAdapter.updateItems(
             ArrayList(
                 durakGame.table().map {
-                    CardsOnTableItem(topImage = it.upperCard?.convert(),
-                        bottomImage = it.bottomCard?.convert())
+                    CardsOnTableItem(
+                        topImage = it.upperCard?.convert(),
+                        bottomImage = it.bottomCard?.convert()
+                    )
                 }
             )
         )
@@ -121,5 +140,17 @@ class DurakFragment : Fragment(R.layout.fragment_durak) {
         cardsBotAdapter.updateAmount(durakGame.getCardsBot())
 
         deckCounterTextView.text = durakGame.deckCounter().toString()
+
+        if(durakGame.deckCounter() == 1){
+            cardShirtImageView.visibility = View.INVISIBLE
+            deckCounterTextView.visibility = View.INVISIBLE
+            trumpCardImageView.visibility = View.VISIBLE
+
+        }else if (durakGame.deckCounter() == 0) {
+
+            cardShirtImageView.visibility = View.INVISIBLE
+            deckCounterTextView.visibility = View.INVISIBLE
+            trumpCardImageView.visibility = View.INVISIBLE
+        }
     }
 }

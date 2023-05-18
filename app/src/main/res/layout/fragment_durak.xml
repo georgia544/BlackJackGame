@@ -54,7 +54,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         />
 
-<!--    TODO вид с 1 картой-козырем и когда карты закончились-->
 
     <TextView
         android:id="@+id/deck_counter"
