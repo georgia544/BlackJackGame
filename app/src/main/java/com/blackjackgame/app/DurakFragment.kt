@@ -16,7 +16,7 @@ import cdflynn.android.library.turn.TurnLayoutManager.Orientation
 class DurakFragment : Fragment(R.layout.fragment_durak) {
     private val durakGame: DurakGame = DurakGameMock()
     private val cardsOnTableAdapter = CardsOnTableAdapter(arrayListOf())
-    private val cardsPlayerAdapter = CardAdapter(arrayListOf(), durakGame)
+    private val cardsPlayerAdapter = CardAdapter(arrayListOf(), durakGame, ::updateUI)
     private val cardsBotAdapter = CardBotAdapter(0)
     private lateinit var deckCounterTextView: TextView
     private lateinit var cardShirtImageView: ImageView
@@ -102,19 +102,17 @@ class DurakFragment : Fragment(R.layout.fragment_durak) {
         val deckCounterTextView = view.findViewById<TextView>(R.id.deck_counter)
         cardShirtImageView = view.findViewById<ImageView>(R.id.card_shirt)
 
-        if(durakGame.deckCounter() == 1){
+        if (durakGame.deckCounter() == 1) {
             cardShirtImageView.visibility = View.INVISIBLE
             deckCounterTextView.visibility = View.INVISIBLE
             trumpCardImageView.visibility = View.VISIBLE
 
-        }else if (durakGame.deckCounter() == 0) {
+        } else if (durakGame.deckCounter() == 0) {
 
             cardShirtImageView.visibility = View.INVISIBLE
             deckCounterTextView.visibility = View.INVISIBLE
             trumpCardImageView.visibility = View.INVISIBLE
         }
-
-
 
 
     }
@@ -141,12 +139,12 @@ class DurakFragment : Fragment(R.layout.fragment_durak) {
 
         deckCounterTextView.text = durakGame.deckCounter().toString()
 
-        if(durakGame.deckCounter() == 1){
+        if (durakGame.deckCounter() == 1) {
             cardShirtImageView.visibility = View.INVISIBLE
             deckCounterTextView.visibility = View.INVISIBLE
             trumpCardImageView.visibility = View.VISIBLE
 
-        }else if (durakGame.deckCounter() == 0) {
+        } else if (durakGame.deckCounter() == 0) {
 
             cardShirtImageView.visibility = View.INVISIBLE
             deckCounterTextView.visibility = View.INVISIBLE

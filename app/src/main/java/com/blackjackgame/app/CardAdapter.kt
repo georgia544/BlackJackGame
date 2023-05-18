@@ -7,7 +7,7 @@ import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 
 class CardAdapter(private var cardItems: ArrayList<CardItem>,private val durakGame: DurakGame,
-) : //TODO private val onTurn:()->Unit
+private val onTurn:()->Unit):
     RecyclerView.Adapter<CardAdapter.CardViewHolder>() {
 
     fun addItem(cardItem: CardItem) {
@@ -38,6 +38,7 @@ class CardAdapter(private var cardItems: ArrayList<CardItem>,private val durakGa
            val chosenCard= durakGame.getCardsPlayer()[position]
             durakGame.turn(listOf(chosenCard))
             durakGame.requestBotTurn()
+            onTurn()
         }
     }
 
